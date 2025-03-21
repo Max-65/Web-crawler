@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "crawl-cli.js",
   "scripts": {
-    "test": "mocha ./spec/**/*.test.js"
+    "test": "mocha ./tests/**/*.test.js"
   },
   "author": "MaxB",
   "license": "ISC",
