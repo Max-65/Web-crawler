@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "crawl-cli.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha './spec/*.spec.js'"
   },
   "author": "MaxB",
   "license": "ISC",
@@ -11,5 +11,8 @@
   "dependencies": {
     "jsdom": "^26.0.0",
     "minimist": "^1.2.8"
+  },
+  "devDependencies": {
+    "mocha": "^11.1.0"
   }
 }
