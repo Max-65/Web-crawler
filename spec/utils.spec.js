@@ -2,16 +2,16 @@
 
 const assert = require('assert');
 
-const uutil = require('../src/uutil');
+const utils = require('../src/utils');
 
 describe('URL utils specification', () => {
    
     describe('Function inScope', () => {
         it('should be defined in utils', () => {
-            assert.ok(typeof uutil.inScope == 'function');
+            assert.ok(typeof utils.inScope == 'function');
         });
         it('should return a boolean by the condition', () => {
-            assert.ok(typeof uutil.inScope('http://www.example.com', 'http://example.com') === 'boolean'); 
+            assert.ok(typeof utils.inScope('http://www.example.com', 'http://example.com') === 'boolean'); 
         });
         
         let cases = [
@@ -28,14 +28,14 @@ describe('URL utils specification', () => {
         ];
         cases.forEach((tc, i) => {
             it(`case #${i + 1}: "${tc.dst}" is ${!tc.cond ? 'NOT ' : ''}in scope "${tc.src}"`, () => {
-                assert.ok((uutil.inScope(tc.dst, tc.src)) === tc.cond);
+                assert.ok((utils.inScope(tc.dst, tc.src)) === tc.cond);
             });
         });
     });
     
     describe('Function normalize', () => {
         it('should be defined in utils', () => {
-            assert.ok(typeof uutil.normalize == 'function');
+            assert.ok(typeof utils.normalize == 'function');
         });
         
         let cases = [
@@ -50,7 +50,7 @@ describe('URL utils specification', () => {
         ];
         cases.forEach((tc, i) => {
             it(`case #${i + 1}: "${tc.dst}" cast to "${tc.dstNorm}"`, () => {
-                assert.strictEqual(uutil.normalize(tc.dst), tc.dstNorm);
+                assert.strictEqual(utils.normalize(tc.dst), tc.dstNorm);
             });
         });
     });
