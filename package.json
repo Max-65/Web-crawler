@@ -1,4 +1,5 @@
 {
+  "author": "MaxB",
   "name": "webcrawler",
   "version": "1.0.0",
   "main": "crawl-cli.js",
