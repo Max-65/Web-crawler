@@ -9,7 +9,6 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "@freecodecamp/example" : "1.1.0",
     "jsdom": "^26.0.0",
     "minimist": "^1.2.8"
   }
