@@ -1,4 +1,3 @@
-# Main features
-* Recursive page parsing
-* (SOON) Searching for keywords and associating them with pages in DB
-* (SOON) Fast search by keywords
+# Web crawler
+Crawls requested web-sites and add them into database. Service extracts keywords from pages and associates them with these pages in the DB. Users can search for certain web-pages by keywords.
+## Project structure (SOON)
