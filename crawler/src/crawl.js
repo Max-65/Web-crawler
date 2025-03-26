@@ -1,11 +1,16 @@
 'use strict'
 
+
+
 const {normalize} = require('./utils');
 const {log} = require('./print');
 const fetch = require('./fetch');
 const extract = require('./extract');
+const {checkRobotsTxt, isUrlAllowed} = require('./robots.js');
 
-function crawl(start, limit = 100) {
+const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+function crawl(start, limit = 20) {
     let cache = {};
     let id = 0;
     let carry = 0;
@@ -15,9 +20,18 @@ function crawl(start, limit = 100) {
     log(`Start crawl "${start}" with limit ${limit}`);
     
     return new Promise((resolve, reject) => {
-        !function curl(src, dest) {
+        !async function curl(src, dest) {
             let destNorm = normalize(dest);
-            if (destNorm in cache === false) {
+            // if dest is root page, check robots.txt
+            let disallowedPaths = [], crawlDelay = 200;
+            if (src === null) {
+                ({disallowedPaths, crawlDelay} = await checkRobotsTxt(destNorm));
+            }
+
+            if (!isUrlAllowed(destNorm, disallowedPaths)) {
+                log(`Url "${destNorm}" is not allowed for parsing in robots.txt`);
+            }
+            else if (destNorm in cache === false) {
                 if (count + 1 > limit) {
                     return;
                 }
@@ -56,6 +70,7 @@ function crawl(start, limit = 100) {
                 let srcNorm = normalize(src);
                 links.push({from: cache[srcNorm], to: cache[destNorm], link: dest});
             }
+            delay(crawlDelay);
         }(null, start);
     });
 }

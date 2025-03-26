@@ -1,6 +1,7 @@
 'use strict'
 
 const argv = Object.assign({
+    start: "https://guap.ru",
     limit: 20,
     output: 'result.json'
 }, require('minimist')(process.argv.slice(2)));
